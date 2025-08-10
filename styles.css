@@ -1,5 +1,61 @@
-.body{
-    width: 500px;
-    height: 500px;
-    background-color: pink;
+
+
+.body {
+  width: 500px;
+  height: 700px;
+  box-sizing: border-box;
+  background-color: rgba(96, 96, 96, 0.466);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 50px 0px;
+}
+
+.display {
+  width: 400px;
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  font-size: 40px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  font-family: "Orbitron", sans-serif;
+}
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+  gap: 10px;
+}
+.buttons-row {
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  font-size: 70px;
+  color: rgb(61, 61, 61);
+  border-radius: 10px;
+  padding: 15px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  border-width: 1px;
+}
+
+button:hover{
+    background-color: gainsboro;
+}
+#equal-sign{
+    background-color: orange;
 }
