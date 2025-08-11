@@ -2,7 +2,8 @@ let operandOne;
 let operandTwo;
 let operator;
 let shouldResetDisplay = false;
-let decimalIsClicked=false
+let decimalIsClicked = false;
+const MAX_DIGITS = 11;
 
 const display = document.querySelector(".display");
 
@@ -22,15 +23,16 @@ operatorBtn.forEach((button) =>
 const allClearBtn = document.querySelector("#all-clear");
 allClearBtn.addEventListener("click", allClear);
 
-const decimalBtn = document.querySelector("#decimal-btn")
-decimalBtn.addEventListener("click", handleDecimalBtnClick)
-
+const decimalBtn = document.querySelector("#decimal-btn");
+decimalBtn.addEventListener("click", handleDecimalBtnClick);
 
 function inputDigit(e) {
   if (shouldResetDisplay) {
     display.innerText = e.target.innerText;
     shouldResetDisplay = false;
   } else {
+    const digits = display.innerText.replace(/[^0-9]/g, "").length;
+    if (digits > MAX_DIGITS) return;
     display.innerText === "0"
       ? (display.innerText = e.target.innerText)
       : (display.innerText += e.target.innerText);
@@ -43,20 +45,20 @@ function inputOperator(e) {
   }
   operandOne = Number(display.innerText);
   operator = e.target.innerText;
-    shouldResetDisplay = true;
-    decimalIsClicked=false
+  shouldResetDisplay = true;
+  decimalIsClicked = false;
 }
 
 function equals() {
-    operandTwo = Number(display.innerText);
-    if(!operandOne && !operator) return
+  operandTwo = Number(display.innerText);
+  if (!operandOne && !operator) return;
   result = operate(operandOne, operator, operandTwo);
-  display.innerText = String(result);
+  display.innerText = String(formatNumber(result));
   operandOne = result;
   operandTwo = null;
   operator = null;
-    shouldResetDisplay = true;
-    decimalIsClicked=false
+  shouldResetDisplay = true;
+  decimalIsClicked = false;
 }
 
 function operate(operandOne, operator, operandTwo) {
@@ -65,7 +67,7 @@ function operate(operandOne, operator, operandTwo) {
       return add(operandOne, operandTwo);
     case "-":
       return subtract(operandOne, operandTwo);
-    case "×":
+    case "x":
       return multiply(operandOne, operandTwo);
     case "÷":
       return divide(operandOne, operandTwo);
@@ -80,13 +82,20 @@ function allClear() {
 }
 
 function handleDecimalBtnClick(e) {
-    if (decimalIsClicked) return
-    else {
-        inputDigit(e)
-        decimalIsClicked=true
-    }
+  if (decimalIsClicked) return;
+  else {
+    inputDigit(e);
+    decimalIsClicked = true;
+  }
 }
 
+function formatNumber(num) {
+  const abs = Math.abs(num)
+  if (abs !== 0 && (abs > 1e10 || abs < 1e-9)) {
+    return num.toExponential(8)
+  }
+  return num
+}
 
 function add(a, b) {
   return a + b;
