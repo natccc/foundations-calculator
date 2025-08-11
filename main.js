@@ -20,8 +20,11 @@ operatorBtn.forEach((button) =>
   button.addEventListener("click", (e) => inputOperator(e))
 );
 
-const allClearBtn = document.querySelector("#all-clear");
+const allClearBtn = document.querySelector("#allclear-btn");
 allClearBtn.addEventListener("click", allClear);
+
+const backspaceBtn = document.querySelector("#backspace-btn")
+backspaceBtn.addEventListener("click", backspace)
 
 const decimalBtn = document.querySelector("#decimal-btn");
 decimalBtn.addEventListener("click", handleDecimalBtnClick);
@@ -89,6 +92,10 @@ function allClear() {
   operator = null;
   display.innerText = "0";
   decimalIsClicked=false
+}
+
+function backspace() {
+  display.innerText= display.innerText.slice(0,-1)
 }
 
 function handleDecimalBtnClick(e) {
