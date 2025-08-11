@@ -11,7 +11,7 @@ digitButtons.forEach((button) =>
 );
 
 const equalBtn = document.querySelector("#equal-btn");
-equalBtn.addEventListener("click", equal);
+equalBtn.addEventListener("click", equals);
 
 const operatorBtn = document.querySelectorAll(".operator");
 operatorBtn.forEach((button) =>
@@ -33,20 +33,26 @@ function inputDigit(e) {
 }
 
 function inputOperator(e) {
-  operandOne = display.innerText;
-  operator = e.target.innerText;
+    if (operator && !shouldResetDisplay) {
+      console.log("here");
+      equals();
+    }
+    operandOne = Number(display.innerText)
+    operator=e.target.innerText
   shouldResetDisplay = true;
-  console.log(operandOne, operator);
 }
 
-function equal() {
-  operandTwo = display.innerText;
-  display.innerText = operate(operandOne, operator, operandTwo);
+function equals() {
+    operandTwo= Number(display.innerText)
+    result = operate(operandOne, operator, operandTwo);
+    display.innerText=String(result)
+  operandOne = result
+    operandTwo = null;
+    operator = null
+    shouldResetDisplay= true
 }
 
 function operate(operandOne, operator, operandTwo) {
-  operandOne = Number(operandOne);
-  operandTwo = Number(operandTwo);
   switch (operator) {
     case "+":
       return add(operandOne, operandTwo);
