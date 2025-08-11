@@ -1,5 +1,8 @@
 # 🧮 Calculator — The Odin Project Foundation Capstone
 
+<img src="demo.gif" width="500" alt="Calculator Demo">
+
+
 This project is the capstone for **The Odin Project Foundation** module.  
 It’s a simple calculator built entirely from **HTML**, **CSS**, and **JavaScript** — no libraries, no frameworks.
 
@@ -31,3 +34,4 @@ It’s a simple calculator built entirely from **HTML**, **CSS**, and **JavaScri
 ## 📚 Reflection
 This was a challenging but rewarding project that pulled together everything I’ve learned in this module — from **JavaScript logic** to **CSS layout** and **DOM manipulation**.  
 It was a great test of my ability to manage state, format output dynamically, and make the UI responsive and user-friendly.
+
