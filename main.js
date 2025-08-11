@@ -26,6 +26,9 @@ allClearBtn.addEventListener("click", allClear);
 const decimalBtn = document.querySelector("#decimal-btn");
 decimalBtn.addEventListener("click", handleDecimalBtnClick);
 
+const negationBtn = document.querySelector("#negation-btn")
+negationBtn.addEventListener("click",negate)
+
 function inputDigit(e) {
   if (shouldResetDisplay) {
     display.innerText = e.target.innerText;
@@ -47,11 +50,12 @@ function inputOperator(e) {
   operator = e.target.innerText;
   shouldResetDisplay = true;
   decimalIsClicked = false;
+
 }
 
 function equals() {
   operandTwo = Number(display.innerText);
-  if (!operandOne || !operator) return;
+  if (!operator) return;
   result = operate(operandOne, operator, operandTwo);
   display.innerText = String(formatNumber(result))
   operandOne = result;
@@ -62,6 +66,7 @@ function equals() {
 }
 
 function operate(operandOne, operator, operandTwo) {
+  
   switch (operator) {
     case "+":
       return add(operandOne, operandTwo);
@@ -72,6 +77,10 @@ function operate(operandOne, operator, operandTwo) {
     case "÷":
       return divide(operandOne, operandTwo);
   }
+}
+
+function negate() {
+ display.innerText = -display.innerText
 }
 
 function allClear() {
@@ -91,6 +100,7 @@ function handleDecimalBtnClick(e) {
 }
 
 function formatNumber(num) {
+  if (!Number.isFinite(num)) return "ERROR"
   const abs = Math.abs(num)
   if (abs !== 0 && (abs > 1e10 || abs < 1e-9)) {
     return num.toExponential(6)
@@ -112,6 +122,5 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  if (b === 0) return "ERROR";
   return a / b;
 }
