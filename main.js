@@ -33,7 +33,7 @@ function inputDigit(e) {
   } else {
     const digits = display.innerText.replace(/[^0-9]/g, "").length;
     if (digits > MAX_DIGITS) return;
-    display.innerText === "0"
+    display.innerText === "0" && e.target.innerText!=="."
       ? (display.innerText = e.target.innerText)
       : (display.innerText += e.target.innerText);
   }
@@ -79,6 +79,7 @@ function allClear() {
   operandTwo = null;
   operator = null;
   display.innerText = "0";
+  decimalIsClicked=false
 }
 
 function handleDecimalBtnClick(e) {
