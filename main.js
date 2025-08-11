@@ -51,9 +51,9 @@ function inputOperator(e) {
 
 function equals() {
   operandTwo = Number(display.innerText);
-  if (!operandOne && !operator) return;
+  if (!operandOne || !operator) return;
   result = operate(operandOne, operator, operandTwo);
-  display.innerText = String(formatNumber(result));
+  display.innerText = String(formatNumber(result))
   operandOne = result;
   operandTwo = null;
   operator = null;
@@ -93,9 +93,10 @@ function handleDecimalBtnClick(e) {
 function formatNumber(num) {
   const abs = Math.abs(num)
   if (abs !== 0 && (abs > 1e10 || abs < 1e-9)) {
-    return num.toExponential(8)
+    return num.toExponential(6)
   }
-  return num
+
+  return Number(num.toPrecision(10))
 }
 
 function add(a, b) {
